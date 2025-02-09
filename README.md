@@ -70,7 +70,7 @@ streamlit run app.py
 |---|---|
 | [![Example Image 1](assets/example1.png)](assets/example1.png) | [![Example Image 2](assets/example2.png)](assets/example2.png) |
 | Image 3 | Image 4 |
-| [![Example Image 3](assets/example3.png)](assets/example1.png) | [![Example Image 4](assets/example4.png)](assets/example4.png) |
+| [![Example Image 3](assets/example3.png)](assets/example3.png) | [![Example Image 4](assets/example4.png)](assets/example4.png) |
 
 
 ## License
