@@ -7,7 +7,12 @@ import pkg_resources
 import google.generativeai as genai
 import os
 
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+if 'GEMINI_API_KEY' in st.secrets:
+    genai.configure(api_key=st.secrets['GEMINI_API_KEY'])
+elif 'GEMINI_API_KEY' in os.environ:
+    genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+
+
 
 generation_config = {
   "temperature": 1,
@@ -48,6 +53,15 @@ except ImportError as e:
     st.error(f"Error importing replicate: {str(e)}")
     st.info("Please try installing replicate manually in your terminal:")
     st.code("pip install replicate")
+    st.stop()
+
+# Configure Replicate client
+if 'REPLICATE_API_TOKEN' in st.secrets:
+    replicate_client = replicate.Client(api_token=st.secrets['REPLICATE_API_TOKEN'])
+elif 'REPLICATE_API_TOKEN' in os.environ:
+    replicate_client = replicate.Client(api_token=os.environ['REPLICATE_API_TOKEN'])
+else:
+    st.error("REPLICATE_API_TOKEN not found in environment variables or secrets")
     st.stop()
 
 def get_image_from_url(url):
