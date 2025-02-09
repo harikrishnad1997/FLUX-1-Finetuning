@@ -7,10 +7,12 @@ import pkg_resources
 import google.generativeai as genai
 import os
 
-if 'GEMINI_API_KEY' in st.secrets:
-    genai.configure(api_key=st.secrets['GEMINI_API_KEY'])
-elif 'GEMINI_API_KEY' in os.environ:
-    genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+try:
+    if 'GEMINI_API_KEY' in st.secrets:
+        genai.configure(api_key=st.secrets['GEMINI_API_KEY'])
+except:
+    if 'GEMINI_API_KEY' in os.environ:
+        genai.configure(api_key=os.environ['GEMINI_API_KEY'])
 
 
 
@@ -56,13 +58,15 @@ except ImportError as e:
     st.stop()
 
 # Configure Replicate client
-if 'REPLICATE_API_TOKEN' in st.secrets:
-    replicate_client = replicate.Client(api_token=st.secrets['REPLICATE_API_TOKEN'])
-elif 'REPLICATE_API_TOKEN' in os.environ:
-    replicate_client = replicate.Client(api_token=os.environ['REPLICATE_API_TOKEN'])
-else:
-    st.error("REPLICATE_API_TOKEN not found in environment variables or secrets")
-    st.stop()
+try:
+    if 'REPLICATE_API_TOKEN' in st.secrets:
+        replicate_client = replicate.Client(api_token=st.secrets['REPLICATE_API_TOKEN'])
+except:
+    if 'REPLICATE_API_TOKEN' in os.environ:
+        replicate_client = replicate.Client(api_token=os.environ['REPLICATE_API_TOKEN'])
+    else:
+        st.error("REPLICATE_API_TOKEN not found in environment variables or secrets")
+        st.stop()
 
 def get_image_from_url(url):
     try:
@@ -102,8 +106,8 @@ def main():
     with st.expander("Advanced Settings"):
         num_steps = st.slider("Number of Inference Steps", 1, 50, 28)
         guidance_scale = st.slider("Guidance Scale", 1.0, 20.0, 7.5)
-        num_outputs = x("Number of Outputs", 1, 4, 2)
-        model = st.selectbox("Model", ["dev"])
+        num_outputs = st.slider("Number of Outputs", 1, 4, 2)
+        model = st.selectbox("Model", ["dev","schnell"])
 
     # Generate button
     if st.button("Generate Images"):

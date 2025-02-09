@@ -2,3 +2,4 @@
 /.conda/
 /data/
 data.zip
+.streamlit/secrets.toml
