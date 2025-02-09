@@ -102,7 +102,7 @@ def main():
     with st.expander("Advanced Settings"):
         num_steps = st.slider("Number of Inference Steps", 1, 50, 28)
         guidance_scale = st.slider("Guidance Scale", 1.0, 20.0, 7.5)
-        num_outputs = st.slider("Number of Outputs", 1, 4, 1)
+        num_outputs = x("Number of Outputs", 1, 4, 2)
         model = st.selectbox("Model", ["dev"])
 
     # Generate button
