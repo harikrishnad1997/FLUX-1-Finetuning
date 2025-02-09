@@ -15,8 +15,8 @@ This Streamlit app generates AI images featuring Hari within a specified scene. 
 1. **Clone the repository:**
 
 ```bash
-git clone [https://github.com/harikrishnad1997/FLUX-1-Finetuning/tree/main](https://www.google.com/search?q=https://github.com/harikrishnad1997/FLUX-1-Finetuning/tree/main)  
-cd YOUR_REPOSITORY_NAME
+git clone https://github.com/harikrishnad1997/FLUX-1-Finetuning.git 
+cd FLUX-1-Finetuning
 ```
 
 2. **Create a virtual environment (recommended):**
@@ -34,14 +34,14 @@ pip install -r requirements.txt
 
 1. **Set up API Keys:**
 
-* **Replicate API Token:**  Obtain your Replicate API token from your Replicate account settings and set it as an environment variable `REPLICATE_API_TOKEN` or in the Streamlit secrets file (`.streamlit/secrets.toml`).  Example in `.streamlit/secrets.toml`:
+* **Replicate API Token:**  Obtain your [Replicate API token](https://replicate.com/) from your Replicate account settings and set it as an environment variable `REPLICATE_API_TOKEN` or in the Streamlit secrets file (`.streamlit/secrets.toml`).  Example in `.streamlit/secrets.toml`:
 
 ```toml
 REPLICATE_API_TOKEN="YOUR_REPLICATE_API_TOKEN"
 GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
 ```
 
-* **Gemini API Key:** Obtain your Gemini API key and set it as an environment variable `GEMINI_API_KEY` or in the Streamlit secrets file (`.streamlit/secrets.toml`).
+* **Gemini API Key:** Obtain your [Gemini API key](https://aistudio.google.com/apikey) and set it as an environment variable `GEMINI_API_KEY` or in the Streamlit secrets file (`.streamlit/secrets.toml`).
 
 ## Usage
 
