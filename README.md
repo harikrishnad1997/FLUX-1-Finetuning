@@ -64,7 +64,7 @@ streamlit run app.py
 1. User enters the prompt: "Winning the Italian GP as a Ferrari Driver"
 2. The app, using Gemini, modifies the prompt to something like: "Hari, a Ferrari driver, celebrates victory at the Italian Grand Prix, the checkered flag waving behind him as he raises his arms in triumph on the podium, surrounded by cheering fans."
 3. The app uses the modified prompt to generate images with the Replicate model.
-4. The generated images, showing Hari in the Tokyo market, are displayed to the user.
+4. The generated images, showing Hari as an F1 driver winning the Italian GP, are displayed to the user.
 
 | Image 1 | Image 2 |
 |---|---|
