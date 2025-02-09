@@ -14,12 +14,12 @@ except:
     if 'GEMINI_API_KEY' in os.environ:
         genai.configure(api_key=os.environ['GEMINI_API_KEY'])
 
-safety_settings = [
-        genai.types.SafetySetting(
-            category=genai.types.HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-            threshold=genai.types.HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-        ),
-      ]
+# safety_settings = [
+#         genai.types.SafetySetting(
+#             category=genai.types.HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+#             threshold=genai.types.HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+#         ),
+#       ]
 
 generation_config = {
   "temperature": 1,
@@ -123,7 +123,7 @@ def main():
                 #     ]
                 #     )
 
-                final_prompt = gemini_model.generate_content(prompt, safety_settings = safety_settings)
+                final_prompt = gemini_model.generate_content(prompt)
                 
                 st.markdown(f"Final prompt: {final_prompt.text}")
 
