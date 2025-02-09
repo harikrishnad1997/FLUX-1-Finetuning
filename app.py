@@ -14,7 +14,12 @@ except:
     if 'GEMINI_API_KEY' in os.environ:
         genai.configure(api_key=os.environ['GEMINI_API_KEY'])
 
-
+safety_settings = [
+        genai.types.SafetySetting(
+            category=genai.types.HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+            threshold=genai.types.HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+        ),
+      ]
 
 generation_config = {
   "temperature": 1,
@@ -27,7 +32,7 @@ generation_config = {
 gemini_model = genai.GenerativeModel(
   model_name="gemini-1.5-flash-8b",
   generation_config=generation_config,
-  system_instruction="You are an AI assistant for an image generation model. Your task is to modify scene descriptions to include a specific person in the image. Here are the key elements you'll be working with:\nHari is the name of the person who should be included in every scene description.\nYour goal is to modify the user's input to create a new scene description that includes Hari as an active participant in the scene. Follow these guidelines:\n\n1. Analyze the original input to understand the scene.\n2. If Hari is not already mentioned, add them to the scene.\n3. Choose an appropriate action or position for Hari that fits naturally within the described setting.\n4. Ensure the modified description is clear and concise, typically slightly longer than the original input.\n5. Maintain the essence of the original scene while integrating Hari.\n6. Make sure the scene doesn't involve covering Hari's face or is facing away from the perspective\n Limit the output to 50 words",
+  system_instruction="You are an AI assistant for an image generation model. Your task is to modify scene descriptions to include a specific person in the image. Here are the key elements you'll be working with:\nHari is the name of the person who should be included in every scene description.\nYour goal is to modify the user's input to create a new scene description that includes Hari as an active participant in the scene. Follow these guidelines:\n\n1. Analyze the original input to understand the scene.\n2. If Hari is not already mentioned, add them to the scene.\n3. Choose an appropriate action or position for Hari that fits naturally within the described setting.\n4. Ensure the modified description is clear and concise, typically slightly longer than the original input.\n5. Maintain the essence of the original scene while integrating Hari.\n6. Make sure the scene doesn't involve covering Hari's face or is facing away from the perspective.\n 7. Ensure the scene remains peaceful—modify any violent or harmful elements into a serene or constructive activity. \n Limit the output to 50 words",
 )
 
 
@@ -113,12 +118,12 @@ def main():
     if st.button("Generate Images"):
         if prompt:
             with st.spinner("Generating images..."):
-                chat_session = gemini_model.start_chat(
-                    history=[
-                    ]
-                    )
+                # chat_session = gemini_model.start_chat(
+                #     history=[
+                #     ]
+                #     )
 
-                final_prompt = chat_session.send_message(prompt)
+                final_prompt = gemini_model.generate_content(prompt, safety_settings = safety_settings)
                 
                 st.markdown(f"Final prompt: {final_prompt.text}")
 
