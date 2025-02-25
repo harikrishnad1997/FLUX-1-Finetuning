@@ -101,6 +101,7 @@ def generate_images(prompt, num_steps=28, guidance_scale=7.5, model="dev", num_o
         return None
 
 def main():
+    st.set_page_config(page_title="Hari's Image Generation App", layout="wide")
     st.title("Hari's Image Generation App")
     st.write("This app will output AI Images created with Hari in them")
     
