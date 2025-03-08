@@ -6,6 +6,9 @@ import subprocess
 import pkg_resources
 import google.generativeai as genai
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 try:
     if 'GEMINI_API_KEY' in st.secrets:
